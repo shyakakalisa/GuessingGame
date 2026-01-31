@@ -4,60 +4,48 @@
     <meta charset="UTF-8">
     <title>Guessing Game</title>
     <style>
-        body { font-family: Arial; text-align: center; margin-top: 50px; }
-        input { padding: 5px; font-size: 16px; }
-        button { padding: 5px 10px; font-size: 16px; margin-top: 10px; }
-        #message { margin-top: 20px; font-size: 18px; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #demo {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        #attempts {
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
+
     <h1>Guessing Game</h1>
+
+    <!-- Random number (hashed number) -->
+    <p id="demo"></p>
+
     <p>Guess a number between 1 and 10:</p>
     <input type="number" id="guessInput" min="1" max="10">
     <button id="submitBtn">Guess</button>
+
     <p id="message"></p>
     <p id="attempts"></p>
 
     <script>
         var randomNumber; 
         var attempts;      
-        var playing = true;
-
-        startGame();
-
-        function startGame() {
-            randomNumber = Math.floor(Math.random() * 10) + 1;
-            attempts = 0;
-            document.getElementById("message").textContent = "";
-            document.getElementById("attempts").textContent = "";
-            console.log("Random number: " + randomNumber); 
-        }
-
-        document.getElementById("submitBtn").onclick = function() {
-            if (!playing) return; 
-
-            var guess = Number(document.getElementById("guessInput").value);
-            attempts++;
-
-            if (guess === randomNumber) {
-                document.getElementById("message").textContent = "🎉 Correct! You guessed it!";
-                document.getElementById("attempts").textContent = "It took you " + attempts + " guesses.";
-                
-                var playAgain = confirm("Do you want to play again?");
-                if (playAgain) {
-                    startGame();
-                } else {
-                    playing = false;
-                    document.getElementById("message").textContent += " Thanks for playing!";
-                }
-            } else if (guess < randomNumber) {
-                document.getElementById("message").textContent = "Too low, guess again.";
-                document.getElementById("attempts").textContent = "Attempts: " + attempts;
-            } else if (guess > randomNumber) {
-                document.getElementById("message").textContent = "Too high, guess again.";
-                document.getElementById("attempts").textContent = "Attempts: " + attempts;
-            }
-        };
-    </script>
-</body>
-</html>
+        var playing =
