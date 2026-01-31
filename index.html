@@ -3,51 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Guessing Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        input {
-            padding: 5px;
-            font-size: 16px;
-        }
-        button {
-            padding: 5px 10px;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        #demo {
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        #message {
-            margin-top: 20px;
-            font-size: 18px;
-        }
-        #attempts {
-            font-size: 16px;
-        }
-    </style>
 </head>
 <body>
 
-    <h1>Guessing Game</h1>
+<h1>Guessing Game</h1>
 
-    <!-- Random number (hashed number) -->
-    <p id="demo"></p>
+<p id="demo"></p>
 
-    <p>Guess a number between 1 and 10:</p>
-    <input type="number" id="guessInput" min="1" max="10">
-    <button id="submitBtn">Guess</button>
+<script>
+    var randomNumber;
+    var guess;
+    var attempts;
+    var playAgain = true;
 
-    <p id="message"></p>
-    <p id="attempts"></p>
+    while (playAgain === true) {
 
-    <script>
-        var randomNumber; 
-        var attempts;      
-        var playing =
+        randomNumber = Math.floor(Math.random() * 10) + 1;
+        attempts = 0;
 
-        
+        document.getElementById("demo").innerHTML = randomNumber;
+
+        guess = 0;
+
+        while (guess !== randomNumber) {
+            guess = Number(prompt("Guess a number between 1 and 10:"));
+            attempts++;
+
+            if (guess > randomNumber) {
+                alert("Your guess is too high. Guess again.");
+            } 
+            else if (guess < randomNumber) {
+                alert("Your guess is too low. Guess again.");
+            } 
+            else {
+                alert(
+                    "Your guess was correct.\n" +
+                    "It took you " + attempts + " guesses."
+                );
+            }
+        }
+
+        playAgain = confirm("Do you want to play again?");
+    }
+</script>
+
+</body>
+</html>
